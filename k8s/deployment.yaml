@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: 212499160972.dkr.ecr.us-east-1.amazonaws.com/backend # Replaced dynamically in buildspec.yml
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
